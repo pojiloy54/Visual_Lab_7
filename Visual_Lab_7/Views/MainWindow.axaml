@@ -1,0 +1,105 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Visual_Lab_7.ViewModels"
+		xmlns:model="using:Visual_Lab_7.Models"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="450"
+        x:Class="Visual_Lab_7.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="lab7"
+        WindowState="Normal"
+        >
+	<Grid RowDefinitions="auto,*,auto">
+		<Menu Grid.Row="0" Background="#2D2D30">
+			<MenuItem Header="File" Foreground="#F1F1F1">
+				<MenuItem Name="Save" Header="Save"/>
+				<MenuItem Name="Load" Header="Load"/>
+				<MenuItem Name="Exit" Header="Exit"/>
+			</MenuItem>
+			<MenuItem  Name="About" Header="About" Foreground="White"/>
+		</Menu>
+
+		<DataGrid Name="data" Grid.Row="1" CanUserResizeColumns="True" ColumnWidth="30*" AlternatingRowBackground="#9E9E9E"  AutoGenerateColumns="False" Items="{Binding Students}" Background="#3E3E42"  >
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="ФИО" Binding="{Binding Name}" />
+				<DataGridTemplateColumn Header="Предмет 1" MinWidth="5" >
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Cells[0].Mark}" Background="{Binding Cells[0].Background}" TextAlignment="Center"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+					<DataGridTemplateColumn.CellEditingTemplate>
+						<DataTemplate>
+							<TextBox Text="{Binding Cells[0].Mark}" LostFocus="cAverage"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellEditingTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTemplateColumn Header="Предмет 2" MinWidth="5">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Cells[1].Mark}" Background="{Binding Cells[1].Background}" TextAlignment="Center"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+					<DataGridTemplateColumn.CellEditingTemplate>
+						<DataTemplate>
+							<TextBox Text="{Binding Cells[1].Mark}" LostFocus="cAverage"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellEditingTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTemplateColumn Header="Предмет 3" MinWidth="5">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Cells[2].Mark}" Background="{Binding Cells[2].Background}" TextAlignment="Center"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+					<DataGridTemplateColumn.CellEditingTemplate>
+						<DataTemplate>
+							<TextBox Text="{Binding Cells[2].Mark}" LostFocus="cAverage"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellEditingTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTemplateColumn Header="Предмет 4" MinWidth="5">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Cells[3].Mark}" Background="{Binding Cells[3].Background}" TextAlignment="Center"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+					<DataGridTemplateColumn.CellEditingTemplate>
+						<DataTemplate>
+							<TextBox Text="{Binding Cells[3].Mark}" LostFocus="cAverage"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellEditingTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTemplateColumn Header="Предмет 5" MinWidth="5">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Cells[4].Mark}" Background="{Binding Cells[4].Background}" TextAlignment="Center"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+					<DataGridTemplateColumn.CellEditingTemplate>
+						<DataTemplate>
+							<TextBox Text="{Binding Cells[4].Mark}" LostFocus="cAverage"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellEditingTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTemplateColumn Header="Средний балл за КС" MinWidth="15">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Average}" Background="{Binding Background}" TextAlignment="Center"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridCheckBoxColumn Header="Флажок" Binding="{Binding IsChecked}"/>
+			</DataGrid.Columns>
+		</DataGrid>
+		<Grid Grid.Row="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Button Grid.Column="0" Command="{Binding Add}"    Background="#007ACC" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Добавить студента" />
+			<Button Grid.Column="1" Command="{Binding Delete}" Background="#007ACC" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Удалить студентов"/>
+		</Grid>
+	</Grid>
+</Window>
